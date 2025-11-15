@@ -13,9 +13,9 @@
                     <p class="text-lg leading-relaxed text-white/90">Raih formasi instansi kefarmasian idaman dengan simulasi CAT real-time, analitik performa, dan coaching SKB mendalam bersama mentor ahli.</p>
                     <div class="flex flex-wrap gap-4">
                         <a href="#paket" class="inline-flex items-center rounded-full bg-[#2D3C8C] px-6 py-3 text-white shadow-lg shadow-[#2D3C8C]/50 transition-all duration-300 hover:bg-blue-900 hover:scale-105 hover:shadow-xl">Lihat Paket Bimbel</a>
-                        <a href="{{ route('order.create', 'cpns-p3k-farmasi') }}" class="inline-flex items-center rounded-full bg-transparent border-2 border-white px-6 py-3 text-white font-semibold transition-all duration-300 hover:bg-white hover:text-[#2D3C8C] hover:scale-105">Beli Sekarang</a>
+                        <a href="{{ route('order.create', ['slug' => 'cpns-p3k-farmasi']) }}" class="inline-flex items-center rounded-full bg-transparent border-2 border-white px-6 py-3 text-white font-semibold transition-all duration-300 hover:bg-white hover:text-[#2D3C8C] hover:scale-105">Beli Sekarang</a>
                     </div>
-                </div>    
+                </div>
                 <div class="rounded-3xl border border-blue-100 bg-white/95 backdrop-blur-sm p-10 shadow-2xl shadow-blue-200/50 animate-slide-up">
                     <h2 class="text-xl font-semibold text-slate-900 mb-4">Komponen Pembelajaran</h2>
                     <ul class="space-y-4 text-sm text-slate-600">
@@ -102,7 +102,7 @@
                         <li class="flex items-center gap-2"><span class="w-2 h-2 bg-[#2D3C8C] rounded-full"></span> Group coaching strategi CAT</li>
                     </ul>
                     <p class="text-2xl font-bold text-[#2D3C8C] mb-6">Rp1.450.000</p>
-                    <a href="{{ route('order.create', 'cpns-p3k-farmasi') }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
+                    <a href="{{ route('order.create', ['slug' => 'cpns-p3k-farmasi']) }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
                 </div>
                 <div class="relative flex flex-col rounded-3xl border-2 border-blue-200 bg-white p-8 shadow-2xl shadow-blue-200/50 hover:shadow-3xl transition-all duration-300 hover:scale-105">
                     <span class="absolute -top-4 right-6 rounded-full bg-[#2D3C8C] px-4 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-lg">Paling Dicari</span>
@@ -116,7 +116,7 @@
                         <li class="flex items-center gap-2"><span class="w-2 h-2 bg-[#2D3C8C] rounded-full"></span> Evaluasi progres personal</li>
                     </ul>
                     <p class="text-2xl font-bold text-[#2D3C8C] mb-6">Rp2.050.000</p>
-                    <a href="{{ route('order.create', 'cpns-p3k-farmasi') }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
+                    <a href="{{ route('order.create', ['slug' => 'cpns-p3k-farmasi']) }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
                 </div>
                 <div class="flex flex-col rounded-3xl border border-blue-100 bg-white p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
                     <h3 class="text-xl font-semibold text-slate-900 mb-2">Paket Fast Track</h3>
@@ -128,7 +128,7 @@
                         <li class="flex items-center gap-2"><span class="w-2 h-2 bg-[#2D3C8C] rounded-full"></span> Modul ringkas high yield</li>
                     </ul>
                     <p class="text-2xl font-bold text-[#2D3C8C] mb-6">Rp2.550.000</p>
-                    <a href="{{ route('order.create', 'cpns-p3k-farmasi') }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
+                    <a href="{{ route('order.create', ['slug' => 'cpns-p3k-farmasi']) }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
                 </div>
             </div>
         </div>

@@ -2,17 +2,7 @@
 
 @section('title', 'Bimbel UKOM D3 Farmasi')
 
-@section('meta_description', 'Bimbel UKOM D3 Farmasi terpercaya dengan tingkat kelulusan 95%. Program intensif, mentor berpengalaman, modul lengkap 1200+ soal, tryout adaptif, dan garansi uang kembali. Daftar sekarang!')
-
-@section('meta_keywords', 'bimbel ukom d3 farmasi, ukom farmasi, ujian kompetensi farmasi, tryout ukom, persiapan ukom, soal ukom farmasi, lulus ukom farmasi, bimbingan ukom, kursus ukom farmasi')
-
-@section('og_title', 'Bimbel UKOM D3 Farmasi - Tingkat Kelulusan 95%')
-
-@section('og_description', 'Program persiapan UKOM D3 Farmasi terlengkap! Modul terstruktur, tryout adaptif, mentor expert, dan garansi lulus. Raih lisensi farmasi Anda dengan percaya diri.')
-
-@section('og_image', asset('images/1.jpg'))
-
-@section('content')             
+@section('content')
     <section class="relative bg-cover bg-center bg-no-repeat" style="background-image: url('/images/1.jpg'); min-height: 70vh;">
         <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-black/30"></div> <!-- Overlay gradien untuk kontras yang lebih halus -->
         <div class="relative z-10 mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
@@ -23,7 +13,7 @@
                     <p class="text-lg leading-relaxed text-white/90">Siap menaklukkan Uji Kompetensi Tenaga Teknis Kefarmasian (UKTTK) dengan modul klinis lengkap, analitik cerdas, dan coaching mentor berpengalaman.</p>
                     <div class="flex flex-wrap gap-4">
                         <a href="#paket" class="inline-flex items-center rounded-full bg-[#2D3C8C] px-6 py-3 text-white shadow-lg shadow-[#2D3C8C]/50 transition-all duration-300 hover:bg-blue-900 hover:scale-105 hover:shadow-xl">Lihat Paket Belajar</a>
-                        <a href="{{ route('order.create', 'bimbel-ukom-d3-farmasi') }}" class="inline-flex items-center rounded-full bg-transparent border-2 border-white px-6 py-3 text-white font-semibold transition-all duration-300 hover:bg-white hover:text-[#2D3C8C] hover:scale-105">Beli Sekarang</a>
+                        <a href="{{ route('order.create', ['slug' => 'bimbel-ukom-d3-farmasi']) }}" class="inline-flex items-center rounded-full bg-transparent border-2 border-white px-6 py-3 text-white font-semibold transition-all duration-300 hover:bg-white hover:text-[#2D3C8C] hover:scale-105">Beli Sekarang</a>
                     </div>
                 </div>
                 <div class="rounded-3xl border border-blue-100 bg-white/95 backdrop-blur-sm p-10 shadow-2xl shadow-blue-200/50 animate-slide-up">
@@ -94,7 +84,7 @@
                 </div>
             </div>
         </div>
-    </section> 
+    </section>
 
     <section id="paket" class="bg-gradient-to-br from-blue-50/70 to-blue-100/50 py-20">
         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -113,7 +103,7 @@
                         <li class="flex items-center gap-2"><span class="w-2 h-2 bg-[#2D3C8C] rounded-full"></span> Grup diskusi komunitas</li>
                     </ul>
                     <p class="text-2xl font-bold text-[#2D3C8C] mb-6">Rp1.250.000</p>
-                    <a href="{{ route('order.create', 'bimbel-ukom-d3-farmasi') }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
+                    <a href="{{ route('order.create', ['slug' => 'bimbel-ukom-d3-farmasi']) }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
                 </div>
                 <div class="relative flex flex-col rounded-3xl border-2 border-blue-200 bg-white p-8 shadow-2xl shadow-blue-200/50 hover:shadow-3xl transition-all duration-300 hover:scale-105">
                     <span class="absolute -top-4 right-6 rounded-full bg-[#2D3C8C] px-4 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-lg">Best Seller</span>
@@ -127,7 +117,7 @@
                         <li class="flex items-center gap-2"><span class="w-2 h-2 bg-[#2D3C8C] rounded-full"></span> Paket modul cetak & bank soal premium</li>
                     </ul>
                     <p class="text-2xl font-bold text-[#2D3C8C] mb-6">Rp1.850.000</p>
-                    <a href="{{ route('order.create', 'bimbel-ukom-d3-farmasi') }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
+                    <a href="{{ route('order.create', ['slug' => 'bimbel-ukom-d3-farmasi']) }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
                 </div>
                 <div class="flex flex-col rounded-3xl border border-blue-100 bg-white p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
                     <h3 class="text-xl font-semibold text-slate-900 mb-2">Ultimate</h3>
@@ -140,7 +130,7 @@
                         <li class="flex items-center gap-2"><span class="w-2 h-2 bg-[#2D3C8C] rounded-full"></span> Bonus webinar & workshop industri</li>
                     </ul>
                     <p class="text-2xl font-bold text-[#2D3C8C] mb-6">Rp2.350.000</p>
-                    <a href="{{ route('order.create', 'bimbel-ukom-d3-farmasi') }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
+                    <a href="{{ route('order.create', ['slug' => 'bimbel-ukom-d3-farmasi']) }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
                 </div>
             </div>
         </div>
