@@ -17,12 +17,12 @@ class TestimonialController extends Controller
         $testimonials = Testimonial::with(['user', 'program'])
             ->approved()
             ->latest()
-            ->paginate(12);
+            ->get();
 
-        $averageRating = Testimonial::approved()->avg('rating');
+        $averageRating = Testimonial::approved()->avg('rating') ?? 0;
         $totalTestimonials = Testimonial::approved()->count();
 
-        return view('pages.testimonials.index', compact('testimonials', 'averageRating', 'totalTestimonials'));
+        return view('pages.testimoni', compact('testimonials', 'averageRating', 'totalTestimonials'));
     }
 
     /**
@@ -36,8 +36,8 @@ class TestimonialController extends Controller
             ->firstOrFail();
 
         // Check if payment is approved
-        if (!$order->payment || $order->payment->status !== 'approved') {
-            return redirect()->route('order.myOrders')
+        if (!$order->payment || $order->payment->status !== 'paid') {
+            return redirect()->route('order.my-orders')
                 ->with('error', 'Anda hanya bisa memberikan testimoni setelah pembayaran disetujui.');
         }
 
@@ -86,7 +86,7 @@ class TestimonialController extends Controller
             'is_approved' => false, // Needs admin approval
         ]);
 
-        return redirect()->route('order.myOrders')
+        return redirect()->route('order.my-orders')
             ->with('success', 'Terima kasih! Testimoni Anda telah dikirim dan menunggu persetujuan admin.');
     }
 
@@ -132,7 +132,7 @@ class TestimonialController extends Controller
             'is_approved' => false, // Reset approval status
         ]);
 
-        return redirect()->route('order.myOrders')
+        return redirect()->route('order.my-orders')
             ->with('success', 'Testimoni Anda telah diupdate dan menunggu persetujuan admin.');
     }
 
@@ -147,7 +147,7 @@ class TestimonialController extends Controller
 
         $testimonial->delete();
 
-        return redirect()->route('order.myOrders')
+        return redirect()->route('order.my-orders')
             ->with('success', 'Testimoni Anda telah dihapus.');
     }
 
