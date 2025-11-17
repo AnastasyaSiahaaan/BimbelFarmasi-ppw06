@@ -7,30 +7,32 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
     /**
-     * Show registration form
+     * Tampilkan form register
      */
     public function showRegisterForm()
     {
+        // kamu tadi pakai view 'pages.register'
         return view('pages.register');
     }
 
     /**
-     * Handle user registration
+     * Proses registrasi user baru (email + password biasa)
      */
     public function register(Request $request)
     {
         $validated = $request->validate([
-            'name'       => ['required', 'string', 'max:255'],
-            'email'      => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone'      => ['required', 'string', 'max:20'],
-            'university' => ['nullable', 'string', 'max:255'],
-            'interest'   => ['nullable', 'string', 'max:255'],
-            'password'   => ['required', 'confirmed', Password::min(8)],
+            'name'        => ['required', 'string', 'max:255'],
+            'email'       => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone'       => ['required', 'string', 'max:20'],
+            'university'  => ['nullable', 'string', 'max:255'],
+            'interest'    => ['nullable', 'string', 'max:255'],
+            'password'    => ['required', 'confirmed', Password::min(8)],
         ], [
             'name.required'     => 'Nama lengkap wajib diisi.',
             'email.required'    => 'Email wajib diisi.',
@@ -42,7 +44,7 @@ class AuthController extends Controller
             'password.min'      => 'Password minimal 8 karakter.',
         ]);
 
-        // Create new user
+        // Buat user baru
         $user = User::create([
             'name'       => $validated['name'],
             'email'      => $validated['email'],
@@ -53,7 +55,7 @@ class AuthController extends Controller
             'is_admin'   => false,
         ]);
 
-        // Auto login after registration
+        // Auto login setelah daftar
         Auth::login($user);
 
         return redirect()->route('home')
@@ -61,15 +63,16 @@ class AuthController extends Controller
     }
 
     /**
-     * Show login form
+     * Tampilkan form login
      */
     public function showLoginForm()
     {
+        // kamu tadi pakai view 'pages.login'
         return view('pages.login');
     }
 
     /**
-     * Handle user login (email + password)
+     * Proses login biasa (email + password)
      */
     public function login(Request $request)
     {
@@ -85,6 +88,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
+            // Arahkan sesuai role
             if (Auth::user()->is_admin) {
                 return redirect()->route('admin.dashboard');
             }
@@ -99,7 +103,64 @@ class AuthController extends Controller
     }
 
     /**
-     * Handle logout
+     * LOGIN DENGAN GOOGLE
+     * Step 1: redirect ke halaman OAuth Google
+     */
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * LOGIN DENGAN GOOGLE
+     * Step 2: terima callback dari Google
+     */
+    public function handleGoogleCallback()
+    {
+        // Ambil data user dari Google
+        $googleUser = Socialite::driver('google')->user();
+
+        $email = $googleUser->getEmail();
+
+        // Cek apakah email sudah pernah daftar (bisa dari register biasa atau Google)
+        $user = User::where('email', $email)->first();
+
+        if (! $user) {
+            // Kalau belum ada, buat user baru minimal dengan name + email
+            $user = User::create([
+                'name'       => $googleUser->getName() ?? $googleUser->getNickname() ?? 'Pengguna Google',
+                'email'      => $email,
+                'phone'      => null,
+                'university' => null,
+                'interest'   => null,
+                // password random supaya field tidak kosong
+                'password'   => Hash::make(Str::random(32)),
+                'is_admin'   => false,
+                // kalau kamu punya kolom google_id di tabel users, boleh tambahkan:
+                // 'google_id'  => $googleUser->getId(),
+            ]);
+        } else {
+            // Kalau mau, di sini kamu bisa update google_id tanpa mengganggu kolom lain
+            // if (empty($user->google_id)) {
+            //     $user->google_id = $googleUser->getId();
+            //     $user->save();
+            // }
+        }
+
+        // Login user
+        Auth::login($user, true); // remember = true
+
+        // Arahkan sama seperti login biasa
+        if (Auth::user()->is_admin) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        return redirect()->intended(route('home'))
+            ->with('success', 'Berhasil login dengan Google!');
+    }
+
+    /**
+     * Logout
      */
     public function logout(Request $request)
     {
@@ -110,55 +171,4 @@ class AuthController extends Controller
 
         return redirect()->route('home')->with('success', 'Anda telah keluar.');
     }
-
-    // ====================================================
-    //               LOGIN DENGAN GOOGLE
-    // ====================================================
-
-    /**
-     * Redirect user ke halaman Google Login
-     */
-    public function redirectToGoogle()
-    {
-        return Socialite::driver('google')->redirect();
-    }
-
-    /**
-     * Handle callback dari Google
-     */
-    public function handleGoogleCallback()
-    {
-        try {
-            // stateless() supaya aman kalau tidak pakai session state default
-            $googleUser = Socialite::driver('google')->stateless()->user();
-        } catch (\Exception $e) {
-            return redirect()
-                ->route('login')
-                ->with('error', 'Gagal login dengan Google. Silakan coba lagi.');
-        }
-
-        // Cari user berdasarkan email Google
-        $user = User::where('email', $googleUser->getEmail())->first();
-
-        // Kalau belum ada, buat user baru
-        if (! $user) {
-            $user = User::create([
-                'name'       => $googleUser->getName() ?? $googleUser->getNickname() ?? 'Pengguna Google',
-                'email'      => $googleUser->getEmail(),
-                'phone'      => null,
-                'university' => null,
-                'interest'   => null,
-                // password random (user normalnya tetap login via Google)
-                'password'   => Hash::make(uniqid('google_', true)),
-                'is_admin'   => false,
-            ]);
-        }
-
-        // Login user
-        Auth::login($user, true);
-
-        return redirect()->intended(route('home'))
-            ->with('success', 'Berhasil login dengan Google.');
-    }
 }
-

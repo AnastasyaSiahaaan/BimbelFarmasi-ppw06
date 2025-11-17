@@ -46,6 +46,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/layanan-saya', [UserController::class, 'myServices'])->name('user.services');
     Route::get('/riwayat-transaksi', [UserController::class, 'transactions'])->name('user.transactions');
 
+    // Program Learning Routes
+    Route::get('/program/{id}', [UserController::class, 'accessProgram'])->name('program.access');
+    Route::get('/program/{id}/materi', [UserController::class, 'materials'])->name('program.materials');
+    Route::get('/program/{id}/jadwal', [UserController::class, 'schedule'])->name('program.schedule');
+    Route::get('/program/{id}/diskusi', [UserController::class, 'discussion'])->name('program.discussion');
+    Route::get('/program/{id}/latihan-soal', [UserController::class, 'exercises'])->name('program.exercises');
+    Route::get('/program/{id}/latihan-soal/{exerciseId}', [UserController::class, 'startExercise'])->name('program.exercise.start');
+    Route::post('/program/{id}/latihan-soal/{exerciseId}/submit', [UserController::class, 'submitExercise'])->name('program.exercise.submit');
+    Route::get('/program/{id}/try-out', [UserController::class, 'tryouts'])->name('program.tryouts');
+    Route::get('/program/{id}/try-out/{tryoutId}', [UserController::class, 'startTryout'])->name('program.tryout.start');
+    Route::post('/program/{id}/try-out/{tryoutId}/submit', [UserController::class, 'submitTryout'])->name('program.tryout.submit');
+    Route::get('/program/{id}/hasil/{resultId}', [UserController::class, 'viewResult'])->name('program.result');
+
     Route::get('/pengaturan', [UserController::class, 'settings'])->name('user.settings');
     Route::post('/pengaturan/password', [UserController::class, 'updatePassword'])->name('user.password.update');
     Route::delete('/pengaturan/akun', [UserController::class, 'deleteAccount'])->name('user.account.delete');

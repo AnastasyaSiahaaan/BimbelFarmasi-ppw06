@@ -22,8 +22,8 @@
                     <h1 class="text-4xl lg:text-5xl font-bold text-white leading-tight">Joki Tugas & Konsultasi Akademik Farmasi</h1>
                     <p class="text-lg leading-relaxed text-white/90">Dampingi setiap tahap penulisan ilmiahmu — mulai dari brainstorming topik, penyusunan proposal, analisis data, hingga publikasi. Semua berjalan etis dan edukatif.</p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="#paket" class="inline-flex items-center rounded-full bg-[#2D3C8C] px-6 py-3 text-white shadow-lg shadow-[#2D3C8C]/50 transition-all duration-300 hover:bg-blue-900 hover:scale-105 hover:shadow-xl">Lihat Paket Pendampingan</a>
-                        <a href="{{ route('kontak') }}" class="inline-flex items-center rounded-full bg-transparent border-2 border-white px-6 py-3 text-white font-semibold transition-all duration-300 hover:bg-white hover:text-[#2D3C8C] hover:scale-105">Request Konsultasi</a>
+                        <a href="{{ route('order.create', ['slug' => 'joki-tugas-farmasi']) }}" class="inline-flex items-center rounded-full bg-[#2D3C8C] px-6 py-3 text-white shadow-lg shadow-[#2D3C8C]/50 transition-all duration-300 hover:bg-blue-900 hover:scale-105 hover:shadow-xl">Beli Sekarang</a>
+                        <a href="#paket" class="inline-flex items-center rounded-full bg-transparent border-2 border-white px-6 py-3 text-white font-semibold transition-all duration-300 hover:bg-white hover:text-[#2D3C8C] hover:scale-105">Lihat Paket Pendampingan</a>
                     </div>
                 </div>
                 <div class="rounded-3xl border border-blue-100 bg-white/95 backdrop-blur-sm p-10 shadow-2xl shadow-blue-200/50 animate-slide-up">
@@ -122,7 +122,10 @@
                         <li class="flex items-center gap-2"><span class="w-2 h-2 bg-[#2D3C8C] rounded-full"></span> Support revisi minor</li>
                     </ul>
                     <p class="text-2xl font-bold text-[#2D3C8C] mb-6">Mulai Rp950.000</p>
-                    <a href="{{ route('kontak') }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Konsultasi Gratis</a>
+                    <div class="flex flex-col gap-2">
+                        <a href="{{ route('order.create', ['slug' => 'joki-tugas-farmasi']) }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
+                        <a href="{{ route('kontak') }}" class="inline-flex items-center justify-center rounded-full bg-transparent border-2 border-[#2D3C8C] px-6 py-3 text-sm font-semibold text-[#2D3C8C] transition-all duration-300 hover:bg-blue-50">Konsultasi Gratis</a>
+                    </div>
                 </div>
                 <div class="relative flex flex-col rounded-3xl border-2 border-blue-200 bg-white p-8 shadow-2xl shadow-blue-200/50 hover:shadow-3xl transition-all duration-300 hover:scale-105">
                     <span class="absolute -top-4 right-6 rounded-full bg-[#2D3C8C] px-4 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-lg">Favorit</span>
@@ -135,7 +138,10 @@
                         <li class="flex items-center gap-2"><span class="w-2 h-2 bg-[#2D3C8C] rounded-full"></span> Simulasi sidang & presentasi</li>
                     </ul>
                     <p class="text-2xl font-bold text-[#2D3C8C] mb-6">Mulai Rp2.450.000</p>
-                    <a href="{{ route('kontak') }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Konsultasi Gratis</a>
+                    <div class="flex flex-col gap-2">
+                        <a href="{{ route('order.create', ['slug' => 'joki-tugas-farmasi']) }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
+                        <a href="{{ route('kontak') }}" class="inline-flex items-center justify-center rounded-full bg-transparent border-2 border-[#2D3C8C] px-6 py-3 text-sm font-semibold text-[#2D3C8C] transition-all duration-300 hover:bg-blue-50">Konsultasi Gratis</a>
+                    </div>
                 </div>
                 <div class="flex flex-col rounded-3xl border border-blue-100 bg-white p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
                     <h3 class="text-xl font-semibold text-slate-900 mb-2">Publishing Pro</h3>
@@ -147,7 +153,10 @@
                         <li class="flex items-center gap-2"><span class="w-2 h-2 bg-[#2D3C8C] rounded-full"></span> Strategi reviewer response</li>
                     </ul>
                     <p class="text-2xl font-bold text-[#2D3C8C] mb-6">Mulai Rp3.050.000</p>
-                    <a href="{{ route('kontak') }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Konsultasi Gratis</a>
+                    <div class="flex flex-col gap-2">
+                        <a href="{{ route('order.create', ['slug' => 'joki-tugas-farmasi']) }}" class="inline-flex items-center justify-center rounded-full bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-900 hover:shadow-lg">Beli Sekarang</a>
+                        <a href="{{ route('kontak') }}" class="inline-flex items-center justify-center rounded-full bg-transparent border-2 border-[#2D3C8C] px-6 py-3 text-sm font-semibold text-[#2D3C8C] transition-all duration-300 hover:bg-blue-50">Konsultasi Gratis</a>
+                    </div>
                 </div>
             </div>
         </div>

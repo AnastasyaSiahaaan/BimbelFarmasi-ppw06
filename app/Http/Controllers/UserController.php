@@ -189,4 +189,351 @@ class UserController extends Controller
 
         return redirect()->route('home')->with('success', 'Akun Anda telah dihapus.');
     }
+
+    /**
+     * Access program dashboard
+     */
+    public function accessProgram($id)
+    {
+        // TODO: Get program data from database and check user access
+        return view('pages.program.dashboard', [
+            'programId' => $id,
+            'programName' => 'Bimbel UKOM D3 Farmasi'
+        ]);
+    }
+
+    /**
+     * Show program materials
+     */
+    public function materials($id)
+    {
+        // TODO: Get materials from database
+        $materials = [
+            [
+                'id' => 1,
+                'title' => 'Farmakologi Dasar',
+                'type' => 'video',
+                'duration' => '45 menit',
+                'completed' => true,
+            ],
+            [
+                'id' => 2,
+                'title' => 'Farmasetika',
+                'type' => 'pdf',
+                'size' => '2.5 MB',
+                'completed' => true,
+            ],
+            [
+                'id' => 3,
+                'title' => 'Kimia Farmasi',
+                'type' => 'video',
+                'duration' => '60 menit',
+                'completed' => false,
+            ],
+        ];
+
+        return view('pages.program.materials', [
+            'programId' => $id,
+            'materials' => $materials
+        ]);
+    }
+
+    /**
+     * Show program schedule
+     */
+    public function schedule($id)
+    {
+        // TODO: Get schedule from database
+        $schedules = [
+            [
+                'date' => '2025-11-20',
+                'time' => '19:00 - 21:00',
+                'topic' => 'Farmakologi Klinik',
+                'mentor' => 'Apt. Dr. Ahmad Fauzi',
+                'status' => 'upcoming',
+            ],
+            [
+                'date' => '2025-11-18',
+                'time' => '19:00 - 21:00',
+                'topic' => 'Farmasetika Lanjutan',
+                'mentor' => 'Apt. Dr. Siti Nurhaliza',
+                'status' => 'completed',
+            ],
+        ];
+
+        return view('pages.program.schedule', [
+            'programId' => $id,
+            'schedules' => $schedules
+        ]);
+    }
+
+    /**
+     * Show program discussion forum
+     */
+    public function discussion($id)
+    {
+        // TODO: Get discussions from database
+        $discussions = [
+            [
+                'id' => 1,
+                'author' => 'Budi Santoso',
+                'topic' => 'Pertanyaan tentang Farmakokinetik',
+                'replies' => 5,
+                'lastReply' => '2 jam yang lalu',
+            ],
+            [
+                'id' => 2,
+                'author' => 'Ani Wijaya',
+                'topic' => 'Diskusi Soal Try Out Week 3',
+                'replies' => 12,
+                'lastReply' => '5 jam yang lalu',
+            ],
+        ];
+
+        return view('pages.program.discussion', [
+            'programId' => $id,
+            'discussions' => $discussions
+        ]);
+    }
+
+    /**
+     * Show exercises list
+     */
+    public function exercises($id)
+    {
+        // TODO: Get exercises from database
+        $exercises = [
+            [
+                'id' => 1,
+                'title' => 'Farmakologi Dasar - Bagian 1',
+                'description' => 'Latihan soal tentang konsep dasar farmakologi',
+                'total_questions' => 20,
+                'duration' => 30,
+                'difficulty' => 'easy',
+                'completed' => true,
+                'score' => 85,
+            ],
+            [
+                'id' => 2,
+                'title' => 'Farmasetika - Formulasi',
+                'description' => 'Soal-soal tentang formulasi sediaan farmasi',
+                'total_questions' => 25,
+                'duration' => 40,
+                'difficulty' => 'medium',
+                'completed' => true,
+                'score' => 78,
+            ],
+            [
+                'id' => 3,
+                'title' => 'Kimia Farmasi Lanjutan',
+                'description' => 'Latihan soal kimia farmasi tingkat lanjut',
+                'total_questions' => 30,
+                'duration' => 45,
+                'difficulty' => 'hard',
+                'completed' => false,
+                'score' => null,
+            ],
+        ];
+
+        return view('pages.program.exercises', [
+            'programId' => $id,
+            'exercises' => $exercises
+        ]);
+    }
+
+    /**
+     * Start an exercise
+     */
+    public function startExercise($id, $exerciseId)
+    {
+        // TODO: Get exercise questions from database
+        $exercise = [
+            'id' => $exerciseId,
+            'title' => 'Farmakologi Dasar - Bagian 1',
+            'duration' => 30,
+            'total_questions' => 20,
+        ];
+
+        $questions = [
+            [
+                'id' => 1,
+                'question' => 'Apa yang dimaksud dengan farmakokinetik?',
+                'options' => [
+                    'A' => 'Studi tentang efek obat pada tubuh',
+                    'B' => 'Studi tentang pergerakan obat dalam tubuh',
+                    'C' => 'Studi tentang interaksi obat',
+                    'D' => 'Studi tentang pembuatan obat',
+                ],
+            ],
+            [
+                'id' => 2,
+                'question' => 'Fase farmakokinetik yang melibatkan penyerapan obat adalah?',
+                'options' => [
+                    'A' => 'Distribusi',
+                    'B' => 'Metabolisme',
+                    'C' => 'Absorpsi',
+                    'D' => 'Ekskresi',
+                ],
+            ],
+            // Add more sample questions as needed
+        ];
+
+        return view('pages.program.exercise-start', [
+            'programId' => $id,
+            'exercise' => $exercise,
+            'questions' => $questions
+        ]);
+    }
+
+    /**
+     * Submit exercise answers
+     */
+    public function submitExercise(Request $request, $id, $exerciseId)
+    {
+        // TODO: Process and save answers
+        $answers = $request->input('answers', []);
+        
+        // Calculate score (dummy calculation)
+        $totalQuestions = 20;
+        $correctAnswers = rand(15, 19);
+        $score = round(($correctAnswers / $totalQuestions) * 100);
+
+        return redirect()->route('program.result', ['id' => $id, 'resultId' => rand(1, 100)])
+            ->with('success', 'Latihan soal berhasil diselesaikan!');
+    }
+
+    /**
+     * Show try out list
+     */
+    public function tryouts($id)
+    {
+        // TODO: Get try outs from database
+        $tryouts = [
+            [
+                'id' => 1,
+                'title' => 'Try Out UKOM D3 - Week 1',
+                'description' => 'Simulasi ujian UKOM minggu pertama dengan 100 soal',
+                'total_questions' => 100,
+                'duration' => 120,
+                'start_date' => '2025-11-15',
+                'end_date' => '2025-11-22',
+                'status' => 'available',
+                'completed' => true,
+                'score' => 82,
+            ],
+            [
+                'id' => 2,
+                'title' => 'Try Out UKOM D3 - Week 2',
+                'description' => 'Simulasi ujian UKOM minggu kedua dengan tingkat kesulitan meningkat',
+                'total_questions' => 100,
+                'duration' => 120,
+                'start_date' => '2025-11-18',
+                'end_date' => '2025-11-25',
+                'status' => 'available',
+                'completed' => false,
+                'score' => null,
+            ],
+            [
+                'id' => 3,
+                'title' => 'Try Out UKOM D3 - Week 3',
+                'description' => 'Try out komprehensif dengan soal dari semua materi',
+                'total_questions' => 100,
+                'duration' => 120,
+                'start_date' => '2025-11-25',
+                'end_date' => '2025-12-02',
+                'status' => 'upcoming',
+                'completed' => false,
+                'score' => null,
+            ],
+        ];
+
+        return view('pages.program.tryouts', [
+            'programId' => $id,
+            'tryouts' => $tryouts
+        ]);
+    }
+
+    /**
+     * Start a try out
+     */
+    public function startTryout($id, $tryoutId)
+    {
+        // TODO: Get try out questions from database
+        $tryout = [
+            'id' => $tryoutId,
+            'title' => 'Try Out UKOM D3 - Week 2',
+            'duration' => 120,
+            'total_questions' => 100,
+        ];
+
+        $questions = [];
+        for ($i = 1; $i <= 100; $i++) {
+            $questions[] = [
+                'id' => $i,
+                'question' => "Soal nomor {$i}: Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+                'options' => [
+                    'A' => 'Pilihan A - Lorem ipsum',
+                    'B' => 'Pilihan B - Dolor sit amet',
+                    'C' => 'Pilihan C - Consectetur adipiscing',
+                    'D' => 'Pilihan D - Elit sed do',
+                ],
+            ];
+        }
+
+        return view('pages.program.tryout-start', [
+            'programId' => $id,
+            'tryout' => $tryout,
+            'questions' => $questions
+        ]);
+    }
+
+    /**
+     * Submit try out answers
+     */
+    public function submitTryout(Request $request, $id, $tryoutId)
+    {
+        // TODO: Process and save answers
+        $answers = $request->input('answers', []);
+        
+        // Calculate score (dummy calculation)
+        $totalQuestions = 100;
+        $correctAnswers = rand(70, 95);
+        $score = round(($correctAnswers / $totalQuestions) * 100);
+
+        return redirect()->route('program.result', ['id' => $id, 'resultId' => rand(100, 200)])
+            ->with('success', 'Try Out berhasil diselesaikan!');
+    }
+
+    /**
+     * View result
+     */
+    public function viewResult($id, $resultId)
+    {
+        // TODO: Get result from database
+        $result = [
+            'id' => $resultId,
+            'title' => 'Try Out UKOM D3 - Week 1',
+            'type' => 'tryout',
+            'score' => 82,
+            'correct_answers' => 82,
+            'total_questions' => 100,
+            'duration_spent' => 105,
+            'completed_at' => '2025-11-16 14:30:00',
+            'passing_grade' => 70,
+        ];
+
+        $breakdown = [
+            ['category' => 'Farmakologi', 'correct' => 18, 'total' => 20, 'percentage' => 90],
+            ['category' => 'Farmasetika', 'correct' => 16, 'total' => 20, 'percentage' => 80],
+            ['category' => 'Kimia Farmasi', 'correct' => 15, 'total' => 20, 'percentage' => 75],
+            ['category' => 'Farmasi Klinik', 'correct' => 17, 'total' => 20, 'percentage' => 85],
+            ['category' => 'Manajemen Farmasi', 'correct' => 16, 'total' => 20, 'percentage' => 80],
+        ];
+
+        return view('pages.program.result', [
+            'programId' => $id,
+            'result' => $result,
+            'breakdown' => $breakdown
+        ]);
+    }
 }
