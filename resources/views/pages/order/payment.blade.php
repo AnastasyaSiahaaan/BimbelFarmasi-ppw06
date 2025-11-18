@@ -167,7 +167,7 @@
                                 </svg>
                                 Pilih File
                             </button>
-                            <input type="file" name="proof" accept="image/png,image/jpeg,image/jpg" style="display:none" id="proof-input" onchange="showPreview(this)">
+                            <input type="file" name="proof" accept="image/png,image/jpeg,image/jpg" class="hidden" id="proof-input" onchange="showPreview(this)" required>
                             <span class="text-sm text-gray-500">Format: PNG, JPG, JPEG (Max: 2MB)</span>
                         </div>
 
@@ -218,7 +218,7 @@
 
                     <!-- Submit Button -->
                     <button type="submit" id="submit-btn" disabled class="w-full bg-gray-400 text-white font-bold py-4 rounded-xl cursor-not-allowed transition-all duration-200">
-                        <span id="submit-text">Pilih Bukti Pembayaran Terlebih Dahulu</span>
+                        <span id="submit-text">Upload Bukti Pembayaran Dulu</span>
                         <svg class="w-5 h-5 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                         </svg>
@@ -323,7 +323,7 @@ function updateSubmitButton() {
     } else {
         submitBtn.disabled = true;
         submitBtn.className = 'w-full bg-gray-400 text-white font-bold py-4 rounded-xl cursor-not-allowed transition-all duration-200';
-        submitText.textContent = 'Pilih Bukti Pembayaran Terlebih Dahulu';
+        submitText.textContent = 'Upload Bukti Pembayaran Dulu';
         submitIcon.setAttribute('d', 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z');
     }
 }

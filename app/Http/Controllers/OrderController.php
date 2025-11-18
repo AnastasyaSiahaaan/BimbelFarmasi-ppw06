@@ -74,14 +74,21 @@ class OrderController extends Controller
             ->where('user_id', Auth::id())
             ->firstOrFail();
 
+        // Debug: Check if file exists
+        if (!$request->hasFile('proof')) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['proof' => 'File bukti pembayaran tidak terdeteksi. Pastikan Anda sudah memilih file.']);
+        }
+
         // Validate request
         $validated = $request->validate([
             'payment_method' => ['required', 'in:bank_transfer,ewallet,qris'],
-            'proof' => ['required', 'image', 'mimes:jpeg,jpg,png', 'max:2048'], // 2MB max
+            'proof' => ['required', 'file', 'mimes:jpeg,jpg,png', 'max:2048'], // 2MB max
         ], [
             'payment_method.required' => 'Metode pembayaran wajib dipilih.',
             'proof.required' => 'Bukti pembayaran wajib diupload.',
-            'proof.image' => 'File harus berupa gambar.',
+            'proof.file' => 'File tidak valid.',
             'proof.mimes' => 'File harus berupa gambar (JPG, JPEG, atau PNG).',
             'proof.max' => 'Ukuran file maksimal 2MB.',
         ]);

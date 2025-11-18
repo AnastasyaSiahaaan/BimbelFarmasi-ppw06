@@ -120,7 +120,7 @@
                     </div>
                     <div>
                         <h3 class="font-semibold text-blue-900">Butuh Bantuan?</h3>
-                        <p class="mt-1 text-sm text-blue-700">Jika ada pertanyaan terkait transaksi, silakan hubungi tim support kami melalui WhatsApp di <a href="tel:+6281234567890" class="font-semibold underline">+62 812-3456-7890</a></p>
+                        <p class="mt-1 text-sm text-blue-700">Jika ada pertanyaan terkait transaksi, silakan hubungi tim support kami melalui WhatsApp di <a href="https://wa.me/6281536908359" class="font-semibold underline">+62 815-3690-8359</a></p>
                     </div>
                 </div>
             </div>

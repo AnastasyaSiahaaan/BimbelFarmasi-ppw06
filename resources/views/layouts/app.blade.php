@@ -359,7 +359,7 @@
                     <h4 class="text-sm font-semibold uppercase tracking-wide text-white/70">Kontak</h4>
                     <ul class="space-y-2 text-sm text-white/80">
                         <li>Email: <a class="hover:text-white" href="mailto:halo@bimbelfarmasi.id">halo@bimbelfarmasi.id</a></li>
-                        <li>Telepon: <a class="hover:text-white" href="tel:+6281234567890">+62 812-3456-7890</a></li>
+                        <li>Telepon: <a class="hover:text-white" href="tel:+6281536908359">+62 815-3690-8359</a></li>
                         <li>Alamat: Jakarta Selatan, Indonesia</li>
                         <li>Jam Operasional: Senin - Sabtu 09.00 - 20.00 WIB</li>
                     </ul>
