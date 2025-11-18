@@ -49,10 +49,6 @@
                                 <h3 class="font-bold text-gray-900 group-hover:text-green-600 transition">WhatsApp</h3>
                                 <p class="mt-1 text-sm text-gray-600">Respon cepat & langsung chat</p>
                                 <p class="mt-2 font-semibold text-green-600">+62 815-3690-8359</p>
-                                <span class="mt-1 inline-flex items-center gap-1 text-xs text-green-600">
-                                    <span class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
-                                    Online 24/7
-                                </span>
                             </div>
                             <svg class="h-5 w-5 text-gray-400 group-hover:text-green-600 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -60,7 +56,7 @@
                         </a>
 
                         <!-- Email -->
-                        <a href="mailto:info@bimbelfarmasi.id?subject=Pertanyaan%20Layanan%20Bimbel" class="group flex items-start gap-4 rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <a href="mailto:bimbelfarmasimdn@gmail.com?subject=Pertanyaan%20Layanan%20Bimbel" class="group flex items-start gap-4 rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                             <div class="flex-shrink-0 rounded-full bg-gradient-to-br from-blue-400 to-[#2D3C8C] p-4 shadow-lg">
                                 <svg class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -69,8 +65,7 @@
                             <div class="flex-1">
                                 <h3 class="font-bold text-gray-900 group-hover:text-[#2D3C8C] transition">Email</h3>
                                 <p class="mt-1 text-sm text-gray-600">Kirim pertanyaan detail via email</p>
-                                <p class="mt-2 font-semibold text-[#2D3C8C]">info@bimbelfarmasi.id</p>
-                                <p class="mt-1 text-xs text-gray-500">📧 Respon dalam 1x24 jam</p>
+                                <p class="mt-2 font-semibold text-[#2D3C8C]">bimbelfarmasimdn@gmail.com</p>
                             </div>
                             <svg class="h-5 w-5 text-gray-400 group-hover:text-[#2D3C8C] transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -88,7 +83,6 @@
                                 <h3 class="font-bold text-gray-900 group-hover:text-purple-600 transition">Telepon</h3>
                                 <p class="mt-1 text-sm text-gray-600">Hubungi langsung via telepon</p>
                                 <p class="mt-2 font-semibold text-purple-600">+62 815-3690-8359</p>
-                                <p class="mt-1 text-xs text-gray-500">🕐 Senin - Sabtu, 09.00 - 20.00 WIB</p>
                             </div>
                             <svg class="h-5 w-5 text-gray-400 group-hover:text-purple-600 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -96,7 +90,7 @@
                         </a>
 
                         <!-- Instagram -->
-                        <a href="https://instagram.com/bimbelfarmasi.id" target="_blank" class="group flex items-start gap-4 rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <a href="https://instagram.com/bimbelfarmasi" target="_blank" class="group flex items-start gap-4 rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                             <div class="flex-shrink-0 rounded-full bg-gradient-to-br from-pink-400 via-purple-500 to-orange-400 p-4 shadow-lg">
                                 <svg class="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
@@ -105,8 +99,7 @@
                             <div class="flex-1">
                                 <h3 class="font-bold text-gray-900 group-hover:text-pink-600 transition">Instagram</h3>
                                 <p class="mt-1 text-sm text-gray-600">Follow untuk tips & update terbaru</p>
-                                <p class="mt-2 font-semibold text-pink-600">@bimbelfarmasi.id</p>
-                                <p class="mt-1 text-xs text-gray-500">📸 Update harian & testimoni</p>
+                                <p class="mt-2 font-semibold text-pink-600">@bimbelfarmasi</p>
                             </div>
                             <svg class="h-5 w-5 text-gray-400 group-hover:text-pink-600 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -123,10 +116,8 @@
                             </div>
                             <div class="flex-1">
                                 <h3 class="font-bold text-gray-900">Alamat Kantor</h3>
-                                <p class="mt-1 text-sm text-gray-600">📍 Jl. Apoteker Raya No. 88</p>
-                                <p class="text-sm text-gray-600">Menteng, Jakarta Pusat 10340</p>
-                                <p class="mt-2 text-xs text-gray-500">🏢 Gedung Farmasi Center Lt. 3</p>
-                                <p class="text-xs text-gray-500">🚗 Dekat Stasiun MRT Bundaran HI</p>
+                                <p class="mt-1 text-sm text-gray-600">📍 Jl. Bunga Mayang I No. 19</p>
+                                <p class="text-sm text-gray-600">Lau Cih, Medan Tuntungan</p>
                             </div>
                         </div>
                     </div>

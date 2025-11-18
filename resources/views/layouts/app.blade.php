@@ -358,10 +358,10 @@
                 <div class="space-y-3">
                     <h4 class="text-sm font-semibold uppercase tracking-wide text-white/70">Kontak</h4>
                     <ul class="space-y-2 text-sm text-white/80">
-                        <li>Email: <a class="hover:text-white" href="mailto:halo@bimbelfarmasi.id">halo@bimbelfarmasi.id</a></li>
+                        <li>Email: <a class="hover:text-white" href="mailto:bimbelfarmasimdn@gmail.com">bimbelfarmasimdn@gmail.com</a></li>
                         <li>Telepon: <a class="hover:text-white" href="tel:+6281536908359">+62 815-3690-8359</a></li>
-                        <li>Alamat: Jakarta Selatan, Indonesia</li>
-                        <li>Jam Operasional: Senin - Sabtu 09.00 - 20.00 WIB</li>
+                        <li>Alamat: Lau Cih, Medan Tuntungan</li>
+                        <li>Instagram: <a class="hover:text-white" href="https://instagram.com/bimbelfarmasi" target="_blank">@bimbelfarmasi</a></li>
                     </ul>
                 </div>
             </div>
