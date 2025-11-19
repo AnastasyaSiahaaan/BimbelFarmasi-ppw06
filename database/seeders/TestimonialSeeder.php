@@ -2,131 +2,172 @@
 
 namespace Database\Seeders;
 
+use App\Models\Testimonial;
 use App\Models\User;
 use App\Models\Program;
 use App\Models\Order;
 use App\Models\Payment;
-use App\Models\Testimonial;
 use Illuminate\Database\Seeder;
 
 class TestimonialSeeder extends Seeder
 {
     public function run(): void
     {
-        // Buat beberapa user dummy untuk testimoni
-        $testimonialData = [
+        // === Buat user dummy dari kedua versi ===
+        $users = [
             [
-                'name' => 'Sarah Amelia',
                 'email' => 'sarah.amelia@example.com',
-                'program_slug' => 'bimbel-ukom-d3-farmasi',
-                'rating' => 5,
-                'comment' => 'Alhamdulillah lulus UKOM di percobaan pertama! Materi yang diberikan sangat lengkap dan mudah dipahami. Mentor juga sangat responsif menjawab pertanyaan. Terima kasih Bimbel Farmasi!',
-                'university' => 'Universitas Indonesia'
+                'name' => 'Sarah Amelia',
+                'university' => 'Universitas Indonesia',
+                'phone' => '081234567000'
             ],
             [
-                'name' => 'Budi Santoso',
                 'email' => 'budi.santoso@example.com',
-                'program_slug' => 'cpns-p3k-farmasi',
-                'rating' => 5,
-                'comment' => 'Sangat membantu dalam persiapan CPNS! Soal-soal latihan mirip dengan soal aslinya. Alhamdulillah bisa lolos dan sekarang sudah PNS. Recommended banget!',
-                'university' => 'Universitas Padjadjaran'
+                'name' => 'Budi Santoso',
+                'university' => 'Universitas Padjadjaran',
+                'phone' => '081234567001'
             ],
             [
-                'name' => 'Rina Widya',
                 'email' => 'rina.widya@example.com',
-                'program_slug' => 'joki-tugas-farmasi',
-                'rating' => 5,
-                'comment' => 'Tugas kuliah saya dikerjakan dengan sangat baik dan tepat waktu. Penjelasannya juga detail sehingga saya bisa memahami materinya. Worth it!',
-                'university' => 'Universitas Airlangga'
+                'name' => 'Rina Widya',
+                'university' => 'Universitas Airlangga',
+                'phone' => '081234567002'
             ],
             [
-                'name' => 'Ahmad Fauzi',
                 'email' => 'ahmad.fauzi@example.com',
-                'program_slug' => 'bimbel-ukom-intensif',
-                'rating' => 5,
-                'comment' => 'Mentor sangat profesional dan sabar. Saya yang awalnya tidak percaya diri, sekarang lulus UKOM dengan nilai memuaskan! Program intensifnya sangat efektif.',
-                'university' => 'Universitas Gadjah Mada'
+                'name' => 'Ahmad Fauzi',
+                'university' => 'Universitas Gadjah Mada',
+                'phone' => '081234567003'
             ],
             [
-                'name' => 'Dewi Kartika',
                 'email' => 'dewi.kartika@example.com',
-                'program_slug' => 'cpns-p3k-skb',
-                'rating' => 5,
-                'comment' => 'Materinya update dan sesuai dengan kisi-kisi terbaru. Tryout online juga sangat membantu mengukur kemampuan saya. Sukses terus Bimbel Farmasi!',
-                'university' => 'Universitas Hasanuddin'
+                'name' => 'Dewi Kartika',
+                'university' => 'Universitas Hasanuddin',
+                'phone' => '081234567004'
             ],
             [
-                'name' => 'Eko Prasetyo',
                 'email' => 'eko.prasetyo@example.com',
-                'program_slug' => 'bimbel-ukom-express',
-                'rating' => 4,
-                'comment' => 'Investasi terbaik untuk masa depan! Dengan mengikuti bimbel ini, saya jadi lebih siap dan yakin menghadapi UKOM. Program express cocok untuk yang butuh persiapan cepat.',
-                'university' => 'Universitas Diponegoro'
+                'name' => 'Eko Prasetyo',
+                'university' => 'Universitas Diponegoro',
+                'phone' => '081234567005'
             ],
             [
-                'name' => 'Siti Nurhaliza',
                 'email' => 'siti.nurhaliza@example.com',
-                'program_slug' => 'bimbel-ukom-d3-farmasi',
-                'rating' => 5,
-                'comment' => 'Sistem belajarnya fleksibel, cocok untuk yang masih kuliah. Materinya lengkap dan mudah dipahami. Alhamdulillah lulus dengan nilai bagus!',
-                'university' => 'Universitas Brawijaya'
+                'name' => 'Siti Nurhaliza',
+                'university' => 'Universitas Brawijaya',
+                'phone' => '081234567006'
             ],
             [
-                'name' => 'Rudi Hartono',
                 'email' => 'rudi.hartono@example.com',
-                'program_slug' => 'cpns-p3k-skd',
-                'rating' => 5,
-                'comment' => 'Bank soal SKD-nya sangat membantu! Prediksi soalnya akurat. Saya berhasil lolos passing grade dengan skor tinggi. Terima kasih!',
-                'university' => 'Universitas Sumatera Utara'
+                'name' => 'Rudi Hartono',
+                'university' => 'Universitas Sumatera Utara',
+                'phone' => '081234567007'
             ],
         ];
 
-        foreach ($testimonialData as $data) {
-            // Buat atau ambil user
-            $user = User::firstOrCreate(
-                ['email' => $data['email']],
+        $createdUsers = [];
+
+        foreach ($users as $u) {
+            $createdUsers[] = User::firstOrCreate(
+                ['email' => $u['email']],
                 [
-                    'name' => $data['name'],
+                    'name' => $u['name'],
                     'password' => bcrypt('password123'),
-                    'university' => $data['university'],
-                    'phone' => '08' . rand(1000000000, 9999999999),
+                    'phone' => $u['phone'],
+                    'university' => $u['university'] ?? null,
                 ]
             );
+        }
 
-            // Ambil program
-            $program = Program::where('slug', $data['program_slug'])->first();
+        // === Data testimoni (gabungan layanan + main) ===
+        $testimonials = [
+            [
+                'email' => 'sarah.amelia@example.com',
+                'program_slug' => 'bimbel-ukom-d3-farmasi',
+                'rating' => 5,
+                'comment' => 'Alhamdulillah lulus UKOM di percobaan pertama! Materinya lengkap dan mudah dipahami.',
+            ],
+            [
+                'email' => 'budi.santoso@example.com',
+                'program_slug' => 'cpns-p3k-farmasi',
+                'rating' => 5,
+                'comment' => 'Sangat membantu persiapan CPNS! Soal mirip aslinya.',
+            ],
+            [
+                'email' => 'rina.widya@example.com',
+                'program_slug' => 'joki-tugas-farmasi',
+                'rating' => 5,
+                'comment' => 'Tugas dikerjakan sangat baik dan tepat waktu.',
+            ],
+            [
+                'email' => 'ahmad.fauzi@example.com',
+                'program_slug' => 'bimbel-ukom-intensif',
+                'rating' => 5,
+                'comment' => 'Mentor profesional dan sabar. Lulus UKOM!',
+            ],
+            [
+                'email' => 'dewi.kartika@example.com',
+                'program_slug' => 'cpns-p3k-skb',
+                'rating' => 5,
+                'comment' => 'Materi update dan sesuai kisi-kisi terbaru.',
+            ],
+            [
+                'email' => 'eko.prasetyo@example.com',
+                'program_slug' => 'bimbel-ukom-express',
+                'rating' => 4,
+                'comment' => 'Investasi terbaik untuk masa depan.',
+            ],
+            [
+                'email' => 'siti.nurhaliza@example.com',
+                'program_slug' => 'bimbel-ukom-d3-farmasi',
+                'rating' => 5,
+                'comment' => 'Sistem belajar fleksibel dan mudah dipahami.',
+            ],
+            [
+                'email' => 'rudi.hartono@example.com',
+                'program_slug' => 'cpns-p3k-skd',
+                'rating' => 5,
+                'comment' => 'Bank soal SKD sangat membantu! Lolos passing grade.',
+            ],
+        ];
 
-            if (!$program) {
+        foreach ($testimonials as $t) {
+            $user = User::where('email', $t['email'])->first();
+            $program = Program::where('slug', $t['program_slug'])->first();
+
+            if (!$program || !$user) {
                 continue;
             }
 
-            // Buat order
+            // Create order
             $order = Order::create([
-                'order_number' => Order::generateOrderNumber(),
                 'user_id' => $user->id,
                 'program_id' => $program->id,
+                'order_number' => 'ORD-' . strtoupper(uniqid()),
                 'amount' => $program->price,
                 'status' => 'completed',
             ]);
 
-            // Buat payment
+            // Create payment
             Payment::create([
                 'order_id' => $order->id,
                 'payment_method' => 'bank_transfer',
                 'amount' => $program->price,
                 'status' => 'paid',
-                'paid_at' => now()->subDays(rand(7, 60)),
+                'paid_at' => now(),
             ]);
 
-            // Buat testimonial
+            // Create testimonial
             Testimonial::create([
                 'user_id' => $user->id,
                 'program_id' => $program->id,
                 'order_id' => $order->id,
-                'rating' => $data['rating'],
-                'comment' => $data['comment'],
+                'rating' => $t['rating'],
+                'comment' => $t['comment'],
                 'is_approved' => true,
             ]);
         }
+
+        $this->command->info('Testimonials seeded successfully!');
     }
 }

@@ -17,12 +17,23 @@ class TestimonialController extends Controller
         $testimonials = Testimonial::with(['user', 'program'])
             ->approved()
             ->latest()
-            ->get();
+            ->paginate(6);
 
         $averageRating = Testimonial::approved()->avg('rating') ?? 0;
         $totalTestimonials = Testimonial::approved()->count();
+        
+        // Calculate satisfaction rate (percentage of ratings >= 4)
+        $highRatings = Testimonial::approved()->where('rating', '>=', 4)->count();
+        $satisfactionRate = $totalTestimonials > 0 
+            ? round(($highRatings / $totalTestimonials) * 100) 
+            : 0;
 
-        return view('pages.testimoni', compact('testimonials', 'averageRating', 'totalTestimonials'));
+        return view('pages.testimonials.index', compact(
+            'testimonials', 
+            'averageRating', 
+            'totalTestimonials', 
+            'satisfactionRate'
+        ));
     }
 
     /**
@@ -36,7 +47,7 @@ class TestimonialController extends Controller
             ->firstOrFail();
 
         // Check if payment is approved
-        if (!$order->payment || $order->payment->status !== 'paid') {
+        if (!$order->payment || $order->payment->status !== 'approved') {
             return redirect()->route('order.my-orders')
                 ->with('error', 'Anda hanya bisa memberikan testimoni setelah pembayaran disetujui.');
         }
