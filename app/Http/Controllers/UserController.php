@@ -54,6 +54,21 @@ class UserController extends Controller
     {
         $user = Auth::user();
         
+        // Get user's courses
+        $courses = \App\Models\Course::where('user_id', $user->id)
+            ->with('order.program')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // Get user's quiz banks
+        $quizBanks = \App\Models\QuizBank::where('user_id', $user->id)
+            ->with('order.program')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // Check if user has any courses or quiz banks
+        $hasContent = $courses->count() > 0 || $quizBanks->count() > 0;
+
         // Get user's verified orders (purchased programs)
         $enrollments = $user->orders()
             ->with('program', 'payment')
@@ -78,7 +93,7 @@ class UserController extends Controller
             })
             ->toArray();
 
-        return view('pages.my-services', compact('enrollments'));
+        return view('pages.my-services', compact('enrollments', 'courses', 'quizBanks', 'hasContent'));
     }
 
     /**

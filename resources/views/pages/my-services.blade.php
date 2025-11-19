@@ -57,8 +57,9 @@
             </div>
 
             <!-- Enrollments List -->
+            @if(count($enrollments) > 0)
             <div class="space-y-6">
-                @forelse($enrollments as $enrollment)
+                @foreach($enrollments as $enrollment)
                     <div class="rounded-2xl bg-white p-6 shadow-lg">
                         <div class="flex items-start justify-between">
                             <div class="flex-1">
@@ -132,32 +133,133 @@
                             </a>
                         </div>
                     </div>
-                @empty
-                    <div class="rounded-2xl bg-white p-12 text-center shadow-lg">
-                        <div class="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
-                            <svg class="h-10 w-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900">Belum Ada Layanan yang Dibeli</h3>
-                        <p class="mt-2 text-sm text-gray-600">Anda belum membeli layanan apapun. Mulai perjalanan belajar Anda dengan memilih paket yang sesuai!</p>
-                        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-                            <a href="{{ route('bimbel.ukom') }}" class="inline-flex items-center justify-center gap-2 rounded-lg bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-blue-900">
-                                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                </svg>
-                                Bimbel UKOM
-                            </a>
-                            <a href="{{ route('cpns.p3k') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-[#2D3C8C] bg-white px-6 py-3 text-sm font-semibold text-[#2D3C8C] transition hover:bg-blue-50">
-                                CPNS & P3K
-                            </a>
-                            <a href="{{ route('joki.tugas') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-[#2D3C8C] bg-white px-6 py-3 text-sm font-semibold text-[#2D3C8C] transition hover:bg-blue-50">
-                                Joki Tugas
-                            </a>
-                        </div>
-                    </div>
-                @endforelse
+                @endforeach
             </div>
+            @endif
+
+            <!-- Show empty state only if no enrollments AND no content -->
+            @if(count($enrollments) === 0 && !$hasContent)
+                <div class="rounded-2xl bg-white p-12 text-center shadow-lg">
+                    <div class="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
+                        <svg class="h-10 w-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Belum Ada Layanan yang Dibeli</h3>
+                    <p class="mt-2 text-sm text-gray-600">Anda belum membeli layanan apapun. Mulai perjalanan belajar Anda dengan memilih paket yang sesuai!</p>
+                    <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+                        <a href="{{ route('bimbel.ukom') }}" class="inline-flex items-center justify-center gap-2 rounded-lg bg-[#2D3C8C] px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-blue-900">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                            Bimbel UKOM
+                        </a>
+                        <a href="{{ route('cpns.p3k') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-[#2D3C8C] bg-white px-6 py-3 text-sm font-semibold text-[#2D3C8C] transition hover:bg-blue-50">
+                            CPNS & P3K
+                        </a>
+                        <a href="{{ route('joki.tugas') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-[#2D3C8C] bg-white px-6 py-3 text-sm font-semibold text-[#2D3C8C] transition hover:bg-blue-50">
+                            Joki Tugas
+                        </a>
+                    </div>
+                </div>
+            @endif
+
+            <!-- Show content if user has courses or quiz banks -->
+            @if($hasContent)
+                <!-- Courses Section -->
+                @if($courses->count() > 0)
+                <div class="mt-8">
+                    <h2 class="mb-6 text-2xl font-bold text-gray-900">📚 Materi Pembelajaran</h2>
+                    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        @foreach($courses as $course)
+                        <div class="rounded-xl bg-white p-6 shadow-lg transition hover:shadow-xl">
+                            <div class="mb-4 flex items-start justify-between">
+                                <div class="rounded-lg bg-gradient-to-br from-blue-100 to-purple-100 p-3">
+                                    <svg class="h-6 w-6 text-[#2D3C8C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                    </svg>
+                                </div>
+                                @if($course->status === 'completed')
+                                <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800">Selesai</span>
+                                @elseif($course->status === 'in_progress')
+                                <span class="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800">Sedang Belajar</span>
+                                @else
+                                <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600">Belum Dimulai</span>
+                                @endif
+                            </div>
+                            
+                            <h3 class="mb-2 text-lg font-bold text-gray-900">{{ $course->title }}</h3>
+                            <p class="mb-4 text-sm text-gray-600">{{ Str::limit($course->description, 80) }}</p>
+                            
+                            <div class="mb-4 flex items-center gap-4 text-sm text-gray-500">
+                                <div class="flex items-center gap-1">
+                                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    {{ $course->duration_minutes }} menit
+                                </div>
+                                @if($course->video_url)
+                                <div class="flex items-center gap-1">
+                                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                    </svg>
+                                    Video
+                                </div>
+                                @endif
+                            </div>
+                            
+                            <button class="w-full rounded-lg bg-gradient-to-r from-[#2D3C8C] to-[#1e2761] py-3 text-sm font-semibold text-white transition hover:shadow-lg">
+                                {{ $course->status === 'completed' ? 'Pelajari Lagi' : ($course->status === 'in_progress' ? 'Lanjutkan Belajar' : 'Mulai Belajar') }}
+                            </button>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
+
+                <!-- Quiz Banks Section -->
+                @if($quizBanks->count() > 0)
+                <div class="mt-12">
+                    <h2 class="mb-6 text-2xl font-bold text-gray-900">📝 Bank Soal & Ujian</h2>
+                    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        @foreach($quizBanks as $quiz)
+                        <div class="rounded-xl bg-white p-6 shadow-lg transition hover:shadow-xl">
+                            <div class="mb-4 flex items-start justify-between">
+                                <div class="rounded-lg bg-gradient-to-br from-orange-100 to-red-100 p-3">
+                                    <svg class="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                    </svg>
+                                </div>
+                                <span class="rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-800">{{ $quiz->category }}</span>
+                            </div>
+                            
+                            <h3 class="mb-2 text-lg font-bold text-gray-900">{{ $quiz->title }}</h3>
+                            <p class="mb-4 text-sm text-gray-600">{{ Str::limit($quiz->description, 80) }}</p>
+                            
+                            <div class="mb-4 space-y-2">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-600">Jumlah Soal</span>
+                                    <span class="font-semibold text-gray-900">{{ $quiz->total_questions }} soal</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-600">Durasi</span>
+                                    <span class="font-semibold text-gray-900">{{ $quiz->duration_minutes }} menit</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-600">Nilai Lulus</span>
+                                    <span class="font-semibold text-gray-900">{{ $quiz->passing_score }}%</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full rounded-lg bg-gradient-to-r from-orange-500 to-red-500 py-3 text-sm font-semibold text-white transition hover:shadow-lg">
+                                Mulai Ujian
+                            </button>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
+            @endif
         </div>
     </section>
 @endsection

@@ -28,7 +28,12 @@ class TestimonialController extends Controller
             ? round(($highRatings / $totalTestimonials) * 100) 
             : 0;
 
-        return view('pages.testimonials.index', compact('testimonials', 'averageRating', 'totalTestimonials', 'satisfactionRate'));
+        return view('pages.testimonials.index', compact(
+            'testimonials', 
+            'averageRating', 
+            'totalTestimonials', 
+            'satisfactionRate'
+        ));
     }
 
     /**

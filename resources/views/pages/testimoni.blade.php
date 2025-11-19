@@ -18,20 +18,20 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="grid gap-8 sm:grid-cols-4">
                 <div class="text-center">
-                    <p class="text-4xl font-bold text-[#2D3C8C]">500+</p>
-                    <p class="mt-2 text-sm text-gray-600">Peserta Lulus UKOM</p>
+                    <p class="text-4xl font-bold text-[#2D3C8C]">{{ $totalTestimonials }}+</p>
+                    <p class="mt-2 text-sm text-gray-600">Testimoni Peserta</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-4xl font-bold text-[#2D3C8C]">{{ number_format($averageRating, 1) }}/5</p>
+                    <p class="mt-2 text-sm text-gray-600">Rating Rata-rata</p>
                 </div>
                 <div class="text-center">
                     <p class="text-4xl font-bold text-[#2D3C8C]">95%</p>
                     <p class="mt-2 text-sm text-gray-600">Tingkat Kelulusan</p>
                 </div>
                 <div class="text-center">
-                    <p class="text-4xl font-bold text-[#2D3C8C]">200+</p>
-                    <p class="mt-2 text-sm text-gray-600">Lolos CPNS/P3K</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-4xl font-bold text-[#2D3C8C]">4.9/5</p>
-                    <p class="mt-2 text-sm text-gray-600">Rating Kepuasan</p>
+                    <p class="text-4xl font-bold text-[#2D3C8C]">500+</p>
+                    <p class="mt-2 text-sm text-gray-600">Peserta Lulus</p>
                 </div>
             </div>
         </div>
@@ -40,80 +40,53 @@
     <!-- Testimonials Grid -->
     <section class="bg-gradient-to-br from-blue-50 to-purple-50 py-16">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                @foreach([
-                    [
-                        'name' => 'Sarah Amelia',
-                        'program' => 'Bimbel UKOM D3 Farmasi',
-                        'university' => 'Universitas Indonesia',
-                        'rating' => 5,
-                        'text' => 'Alhamdulillah lulus UKOM di percobaan pertama! Materi yang diberikan sangat lengkap dan mudah dipahami. Mentor juga sangat responsif menjawab pertanyaan.',
-                        'image' => 'https://ui-avatars.com/api/?name=Sarah+Amelia&background=2D3C8C&color=fff&size=100'
-                    ],
-                    [
-                        'name' => 'Budi Santoso',
-                        'program' => 'CPNS Farmasi',
-                        'university' => 'Universitas Padjadjaran',
-                        'rating' => 5,
-                        'text' => 'Sangat membantu dalam persiapan CPNS! Soal-soal latihan mirip dengan soal aslinya. Alhamdulillah bisa lolos dan sekarang sudah PNS.',
-                        'image' => 'https://ui-avatars.com/api/?name=Budi+Santoso&background=4F46E5&color=fff&size=100'
-                    ],
-                    [
-                        'name' => 'Rina Widya',
-                        'program' => 'Joki Tugas Akademik',
-                        'university' => 'Universitas Airlangga',
-                        'rating' => 5,
-                        'text' => 'Tugas kuliah saya dikerjakan dengan sangat baik dan tepat waktu. Penjelasannya juga detail sehingga saya bisa memahami materinya.',
-                        'image' => 'https://ui-avatars.com/api/?name=Rina+Widya&background=EC4899&color=fff&size=100'
-                    ],
-                    [
-                        'name' => 'Ahmad Fauzi',
-                        'program' => 'Bimbel UKOM D3 Farmasi',
-                        'university' => 'Universitas Gadjah Mada',
-                        'rating' => 5,
-                        'text' => 'Mentor sangat profesional dan sabar. Saya yang awalnya tidak percaya diri, sekarang lulus UKOM dengan nilai memuaskan!',
-                        'image' => 'https://ui-avatars.com/api/?name=Ahmad+Fauzi&background=10B981&color=fff&size=100'
-                    ],
-                    [
-                        'name' => 'Dewi Kartika',
-                        'program' => 'P3K Farmasi',
-                        'university' => 'Universitas Hasanuddin',
-                        'rating' => 5,
-                        'text' => 'Materinya update dan sesuai dengan kisi-kisi terbaru. Tryout online juga sangat membantu mengukur kemampuan saya.',
-                        'image' => 'https://ui-avatars.com/api/?name=Dewi+Kartika&background=F59E0B&color=fff&size=100'
-                    ],
-                    [
-                        'name' => 'Eko Prasetyo',
-                        'program' => 'Bimbel UKOM D3 Farmasi',
-                        'university' => 'Universitas Diponegoro',
-                        'rating' => 5,
-                        'text' => 'Investasi terbaik untuk masa depan! Dengan mengikuti bimbel ini, saya jadi lebih siap dan yakin menghadapi UKOM.',
-                        'image' => 'https://ui-avatars.com/api/?name=Eko+Prasetyo&background=8B5CF6&color=fff&size=100'
-                    ],
-                ] as $testimoni)
-                    <div class="rounded-2xl bg-white p-6 shadow-lg transition hover:shadow-xl">
-                        <div class="mb-4 flex items-center gap-4">
-                            <img src="{{ $testimoni['image'] }}" alt="{{ $testimoni['name'] }}" class="h-16 w-16 rounded-full">
-                            <div>
-                                <h3 class="font-bold text-gray-900">{{ $testimoni['name'] }}</h3>
-                                <p class="text-sm text-gray-600">{{ $testimoni['university'] }}</p>
-                                <p class="text-xs font-medium text-[#2D3C8C]">{{ $testimoni['program'] }}</p>
+            @if($testimonials->count() > 0)
+                <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    @foreach($testimonials as $testimoni)
+                        <div class="rounded-2xl bg-white p-6 shadow-lg transition hover:shadow-xl">
+                            <div class="mb-4 flex items-center gap-4">
+                                <img src="https://ui-avatars.com/api/?name={{ urlencode($testimoni->user->name) }}&background=random&color=fff&size=100" alt="{{ $testimoni->user->name }}" class="h-16 w-16 rounded-full">
+                                <div>
+                                    <h3 class="font-bold text-gray-900">{{ $testimoni->user->name }}</h3>
+                                    @if($testimoni->user->university)
+                                        <p class="text-sm text-gray-600">{{ $testimoni->user->university }}</p>
+                                    @endif
+                                    <p class="text-xs font-medium text-[#2D3C8C]">{{ $testimoni->program->name }}</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- Rating -->
-                        <div class="mb-3 flex gap-1">
-                            @for($i = 0; $i < $testimoni['rating']; $i++)
-                                <svg class="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
-                            @endfor
-                        </div>
+                            <!-- Rating -->
+                            <div class="mb-3 flex gap-1">
+                                @for($i = 1; $i <= 5; $i++)
+                                    @if($i <= $testimoni->rating)
+                                        <svg class="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                    @else
+                                        <svg class="h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                    @endif
+                                @endfor
+                            </div>
 
-                        <p class="text-sm leading-relaxed text-gray-700">"{{ $testimoni['text'] }}"</p>
+                            <p class="text-sm leading-relaxed text-gray-700">"{{ $testimoni->comment }}"</p>
+                            
+                            <p class="mt-3 text-xs text-gray-500">{{ $testimoni->created_at->diffForHumans() }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="text-center py-12">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
+                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
+                        </svg>
                     </div>
-                @endforeach
-            </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Belum Ada Testimoni</h3>
+                    <p class="text-gray-600">Jadilah yang pertama memberikan testimoni!</p>
+                </div>
+            @endif
         </div>
     </section>
 
