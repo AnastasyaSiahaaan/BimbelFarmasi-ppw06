@@ -142,16 +142,16 @@
             <div>
                 <p class="text-sm font-semibold text-gray-700">Status Pembayaran</p>
                 <p class="text-xs text-gray-500 mt-1">
-                    @if($payment->status === 'paid')
-                        Disetujui pada {{ $payment->paid_at?->format('d M Y, H:i') ?? 'N/A' }}
+                    @if($payment->status === 'verified')
+                        Disetujui pada {{ $payment->updated_at->format('d M Y, H:i') }}
                     @else
                         Ditolak • {{ $payment->notes }}
                     @endif
                 </p>
             </div>
             <span class="px-4 py-2 rounded-full text-sm font-semibold
-                {{ $payment->status === 'paid' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                {{ $payment->status === 'paid' ? 'Terkonfirmasi' : 'Ditolak' }}
+                {{ $payment->status === 'verified' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+                {{ $payment->status === 'verified' ? 'Terkonfirmasi' : 'Ditolak' }}
             </span>
         </div>
     </div>
